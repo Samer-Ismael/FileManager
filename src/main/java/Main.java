@@ -4,8 +4,9 @@ public class Main {
         System.out.println("Hello world!");
 
 
+        System.out.println("Enter the path for the folder you want to sort");
         String filePath = new Scanner(System.in).nextLine();
-        //String filePath = "C:\\Users\\Samer\\Documents\\TestFile";
+
         FileSorting sort = new FileSorting(filePath);
         sort.RunTheApp();
 
