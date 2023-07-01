@@ -26,14 +26,10 @@ public class FileSorting {
     }
 
     public void sortFilesByType() throws IOException {
-        if (!sourceFolder.isDirectory()) {
-            throw new IllegalArgumentException("Source folder is not a directory.");
-        }
+        if (!sourceFolder.isDirectory()) throw new IllegalArgumentException("Source folder is not a directory.");
 
         File[] files = sourceFolder.listFiles();
-        if (files == null) {
-            return;
-        }
+        if (files == null)  return;
 
         for (File file : files) {
             if (file.isFile()) {
@@ -41,9 +37,8 @@ public class FileSorting {
 
                 String folderName = getFolderName(fileType);
                 File typeDir = new File(sourceFolder, folderName);
-                if (!typeDir.exists()) {
-                    typeDir.mkdir();
-                }
+
+                if (!typeDir.exists()) typeDir.mkdir();
 
                 Path sourcePath = file.toPath();
                 Path destPath = typeDir.toPath().resolve(file.getName());
@@ -66,14 +61,13 @@ public class FileSorting {
         folderNames.put("png", "images");
         folderNames.put("gif", "images");
         folderNames.put("java", "source_code");
-        // Add more file types and folder names as needed
     }
 
     private String getFolderName(String fileType) {
         String folderName = folderNames.get(fileType);
-        if (folderName == null) {
-            folderName = "other";
-        }
+
+        if (folderName == null) folderName = "other";
+        
         return folderName;
     }
 
